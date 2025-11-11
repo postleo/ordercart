@@ -52,73 +52,6 @@ OrderCart consists of **4 Cloud Run Services**:
 
 ---
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Google Cloud Account (free tier available)
-- Google API Key for Gemma AI
-- Gmail account with App Password
-
-### Option 1: Automated Deployment (Recommended)
-
-```bash
-# Make script executable
-chmod +x deploy.sh
-
-# Run deployment
-./deploy.sh
-```
-
-The script will prompt you for:
-- Google Cloud Project ID
-- Google API Key
-- Gmail credentials
-- Deployment region
-
-**Deployment Time:** 10-15 minutes
-
-### Option 2: Manual Deployment
-
-Follow the comprehensive guide in [deployment.md](./deployment.md)
-
----
-
-## 📁 Project Structure
-
-```
-ordercart-2/
-├── agent-intake-validator/          # Agent 1: Intake & Validation
-│   ├── main.py                      # Flask app with AI normalization
-│   ├── requirements.txt
-│   ├── Procfile
-│   └── README.md
-├── agent-fulfillment-processor/     # Agent 2: Fulfillment Processor
-│   ├── main.py                      # Batch optimization engine
-│   ├── requirements.txt
-│   ├── Procfile
-│   └── README.md
-├── agent-exception-handler/         # Agent 3: Exception Handler
-│   ├── main.py                      # AI exception analysis + Gmail
-│   ├── requirements.txt
-│   ├── Procfile
-│   └── README.md
-├── ordercart-webapp/                # Web Application
-│   ├── app.py                       # Flask backend + API gateway
-│   ├── templates/
-│   │   └── index.html               # Complete UI (based on demo)
-│   ├── static/
-│   │   ├── css/style.css            # Aquamarine + Oxford Blue theme
-│   │   └── js/app.js                # API integration + UI logic
-│   ├── requirements.txt
-│   ├── Procfile
-│   └── README.md
-├── deploy.sh                        # Automated deployment script
-├── deployment.md                    # Complete deployment guide
-└── README.md                        # This file
-```
-
----
-
 ## ✨ Features
 
 ### 1. Automated Order Capture
@@ -165,16 +98,6 @@ ordercart-2/
 
 ---
 
-## 🎨 Design
-
-- **Colors**: Aquamarine (#7FFFD4) and Oxford Blue (#002147)
-- **Font**: Nunito
-- **Theme**: Light/Dark mode toggle
-- **Responsive**: Mobile-friendly design
-- **Icons**: Font Awesome 6
-
----
-
 ## 🤖 AI Features
 
 ### Gemma AI Integration
@@ -209,56 +132,6 @@ Each agent combines AI with rule-based validation:
 
 ---
 
-## 📋 API Endpoints
-
-### Agent 1: Intake & Validation
-- `POST /api/intake` - Submit single order
-- `POST /api/intake/batch` - Submit multiple orders
-- `GET /health` - Health check
-
-### Agent 2: Fulfillment Processor
-- `GET /api/batches/suggest` - Get AI batch suggestions
-- `POST /api/batches/create` - Create batch
-- `PUT /api/orders/{id}/status` - Update order status
-- `POST /api/batches/{id}/update-status` - Bulk update
-- `GET /api/orders` - List orders
-
-### Agent 3: Exception Handler
-- `POST /api/exceptions/{id}/analyze` - Analyze exception with AI
-- `POST /api/exceptions/{id}/resolve` - Resolve exception
-- `POST /api/communications/send` - Send customer email
-- `POST /api/communications/generate` - Generate message preview
-- `GET /api/exceptions` - List all exceptions
-
-### Web App
-- `GET /` - Main application interface
-- `GET /api/stats/dashboard` - Dashboard statistics
-- All agent endpoints proxied through web app
-
----
-
-## 🔐 Security
-
-- **Authentication**: Firebase Auth ready (not implemented by default)
-- **API Security**: Cloud Run IAM integration
-- **Secrets**: Environment variables for sensitive data
-- **Email**: Gmail App Password (not main password)
-
----
-
-## 💰 Cost Estimates
-
-### Free Tier Usage
-- **Cloud Run**: 2M requests/month free
-- **Firestore**: 1 GB storage + 50K reads/day free
-- **Pub/Sub**: 10 GB messages/month free
-- **Cloud Build**: 120 build-minutes/day free
-
-**Expected Cost (Light Usage):** $0 - $5/month
-
-**Expected Cost (Production):** $20 - $50/month
-
----
 
 ## 🧪 Testing
 
@@ -297,29 +170,12 @@ Submit an order with invalid email to trigger exception handling:
 
 ## 📚 Documentation
 
-- **[deployment.md](./deployment.md)** - Complete deployment guide for beginners
 - **[Agent 1 README](./agent-intake-validator/README.md)** - Intake Agent docs
 - **[Agent 2 README](./agent-fulfillment-processor/README.md)** - Processor Agent docs
 - **[Agent 3 README](./agent-exception-handler/README.md)** - Exception Agent docs
 - **[Web App README](./ordercart-webapp/README.md)** - Web application docs
 
----
 
-## 🔧 Deployment Script Features
-
-The `deploy.sh` script includes:
-
-✅ **Modular**: Each step is independent
-✅ **Resumable**: Can restart from last successful step
-✅ **Safe**: Checks for existing resources before creating
-✅ **Tracked**: Logs all created resources
-✅ **Error Handling**: Graceful failure recovery
-
-### Resume Deployment
-If deployment is interrupted, simply rerun:
-```bash
-./deploy.sh
-```
 
 The script will skip completed steps and continue from where it stopped.
 
@@ -389,19 +245,6 @@ curl http://localhost:8080/health
 - [ ] Mobile app (React Native)
 - [ ] Webhook integrations
 
----
-
-## 📄 License
-
-This project is provided as-is for educational and commercial use.
-
----
-
-## 🤝 Support
-
-- **Issues**: Report in your repository
-- **Documentation**: See `deployment.md`
-- **Logs**: Check Cloud Run logs in GCP Console
 
 ---
 
@@ -417,14 +260,3 @@ This project is provided as-is for educational and commercial use.
 **Built with ❤️ using Google Cloud and Gemma AI**
 
 **OrderCart** - Streamline your order management with AI
-
----
-
-## Quick Links
-
-- 📖 [Deployment Guide](./deployment.md)
-- 🚀 [Deploy Script](./deploy.sh)
-- 🎨 [Demo HTML](./details%20doc/ordercart%20full%20demo.html)
-- 🏗️ [Architecture Diagram](./details%20doc/OrderCart_Architecture_Diagram%20(1).html)
-- 📋 [Product Details](./details%20doc/ordercart.md)
-- 🤖 [AI Agent Details](./details%20doc/OrderCart%20%20AI%20Agent%20Details.md)
